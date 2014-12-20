@@ -13,7 +13,7 @@ class ControllerCheckoutSuccess extends Controller {
 			unset($this->session->data['payment_methods']);
 			unset($this->session->data['guest']);
 			unset($this->session->data['comment']);
-			unset($this->session->data['order_id']);	
+			//unset($this->session->data['order_id']);	
 			unset($this->session->data['coupon']);
 			unset($this->session->data['reward']);
 			unset($this->session->data['voucher']);
@@ -54,9 +54,9 @@ class ControllerCheckoutSuccess extends Controller {
 		$this->data['heading_title'] = $this->language->get('heading_title');
 
 		if ($this->customer->isLogged()) {
-			$this->data['text_message'] = sprintf($this->language->get('text_customer'), $orderID, $this->url->link('account/account', '', 'SSL'), $this->url->link('account/order', '', 'SSL'), $this->url->link('account/download', '', 'SSL'), $this->url->link('information/contact'));
+			$this->data['text_message'] = sprintf($this->language->get('text_customer'), $orderID, $this->url->link('account/order', '', 'SSL'));
 		} else {
-			$this->data['text_message'] = sprintf($this->language->get('text_guest'), $this->url->link('information/contact'));
+			$this->data['text_message'] = sprintf($this->language->get('text_guest'), $orderID);
 		}
 
 		$this->data['button_continue'] = $this->language->get('button_continue');
