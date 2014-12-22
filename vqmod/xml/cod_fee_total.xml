@@ -1,0 +1,50 @@
+<modification>
+	<id>COD Fee Total</id>
+	<version>1.1.1</version>
+	<vqmver>2.1.0</vqmver>
+	<author>Fabius - http://opencartit.altervista.org</author>
+	<file name="catalog/view/theme/*/template/checkout/payment_method.tpl">
+		<operation error="skip">
+			<search position="after"><![CDATA[foreach ($payment_methods as $payment_method)]]></search>
+			<add><![CDATA[<?php $cost = $payment_method['code'] == "cod" ? " ".$cod_fee_fee : ""; ?>]]></add>
+		</operation>
+	</file>
+	<file name="catalog/view/theme/*/template/checkout/payment_method.tpl">
+		<operation error="skip">
+			<search position="replace"><![CDATA[$payment_method['title']]]></search>
+			<add><![CDATA[$payment_method['title'].$cost]]></add>
+		</operation>
+	</file>
+	<file name="catalog/controller/checkout/payment_method.php">
+		<operation>
+			<search position="before"><![CDATA[$this->data['text_payment_method'] = $this->language->get('text_payment_method');]]></search>
+			<add><![CDATA[
+			$codfee = 0;
+			$cft = $this->config->get('cod_fee_total');
+			
+			if(empty($cft) || ($this->cart->getTotal() < $cft)) {
+				if($this->config->get('cod_fee_fee_type') == 'f') {
+					$codfee = $this->config->get('cod_fee_fee');
+				} else {
+					$min = $this->config->get('cod_fee_fee_min');
+					$max = $this->config->get('cod_fee_fee_max');
+					$codfee = ($this->cart->getTotal() * $this->config->get('cod_fee_fee')) / 100;
+					if(!empty($min) && ($codfee < $min)) $codfee = $min;
+					if(!empty($max) && ($codfee > $max)) $codfee = $max;
+				}
+			}
+			
+			$this->data['cod_fee_fee'] = $this->currency->format($this->tax->calculate($codfee, $this->config->get('cod_fee_tax_class_id'), $this->config->get('config_tax')));
+			]]></add>
+		</operation>
+	</file>
+	<file name="catalog/model/payment/cod.php">
+		<operation>
+			<search position="before"><![CDATA[$method_data = array();]]></search>
+			<add><![CDATA[
+			$shipping_method = isset($this->session->data['shipping_method']['code']) ? $this->session->data['shipping_method']['code'] : false;
+			if(($status == true) && (strpos($shipping_method,'pickup') === false)) { $status = true; } else { $status = false; }
+			]]></add>
+		</operation>
+	</file>
+</modification>
