@@ -833,6 +833,11 @@ a.button:hover, input.button:hover {
 	display: block;
 	margin-bottom: 4px;
 }
+
+.box-product .name {
+	height: 30px;
+}
+
 .box-product .name a {
 	font-size: 10px;
 	text-transform: uppercase;
@@ -866,7 +871,7 @@ a.button:hover, input.button:hover {
 	display: none;
 	margin-bottom: 4px;
 }
-.box-product .cart input.button {
+/*.box-product .cart input.button {
 	border: none;
 	background: #FFF;
 	padding: 0;
@@ -882,7 +887,7 @@ a.button:hover, input.button:hover {
 	-webkit-transition: color .3s;
 	   -moz-transition: color .3s;
 			transition: color .3s;
-}
+}*/
 .box-product .cart input.button:hover {
 	color: #1A1E22;
 }
