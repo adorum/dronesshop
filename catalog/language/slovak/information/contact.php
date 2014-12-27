@@ -9,7 +9,7 @@ $_['text_address']   = 'Adresa:';
 $_['text_email']     = 'E-mail:';
 $_['text_telephone'] = 'Telefón:';
 $_['text_fax']       = 'Fax:';
-$_['text_message']   = '<p>Váš dotaz bol úspešne odeslán miiteli obchodu!</p>';
+$_['text_message']   = '<p>Ďakujeme za Vašu správu. V blízkej dobe Vás budeme kontaktovať.</p>';
 
 // Entry Fields
 $_['entry_name']     = 'Meno a priezvisko:';
