@@ -17,6 +17,7 @@ class ControllerCommonFooter extends Controller {
 		$this->data['text_order'] = $this->language->get('text_order');
 		$this->data['text_wishlist'] = $this->language->get('text_wishlist');
 		$this->data['text_newsletter'] = $this->language->get('text_newsletter');
+		$this->data['text_products_footer'] = $this->language->get('text_products_footer');
 
 		$this->load->model('catalog/information');
 
@@ -70,6 +71,21 @@ class ControllerCommonFooter extends Controller {
 			$this->model_tool_online->whosonline($ip, $this->customer->getId(), $url, $referer);
 		}		
 
+		$this->language->load('module/category');
+		$this->load->model('catalog/category');
+		
+		
+		$this->data['categories'] = array();
+		$categories = $this->model_catalog_category->getCategories(0);
+		
+		foreach ($categories as $category) {
+			$this->data['categories'][] = array(
+			'category_id' => $category['category_id'],
+			'name' => $category['name'],
+			'href' => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);
+		}
+		
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/footer.tpl')) {
 			$this->template = $this->config->get('config_template') . '/template/common/footer.tpl';
 		} else {

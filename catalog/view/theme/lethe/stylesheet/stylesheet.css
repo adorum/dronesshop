@@ -2138,6 +2138,7 @@ a.button:hover, input.button:hover {
 	font-size: 12px;
 	text-align: right;
 	text-transform: uppercase;
+	float: right;
 }
 
 /* Social Media Buttons

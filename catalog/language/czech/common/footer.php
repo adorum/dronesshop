@@ -3,6 +3,7 @@
 $_['text_information']  = 'Informace';
 $_['text_service']      = 'Zákaznický servis';
 $_['text_extra']        = 'Doplňky';
+$_['text_products_footer'] = 'Produkty';
 $_['text_contact']      = 'Kontaktujte nás';
 $_['text_return']       = 'Reklamace';
 $_['text_sitemap']      = 'Mapa stránky';
