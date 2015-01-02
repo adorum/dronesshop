@@ -57,9 +57,6 @@
         <td class="right"><?php echo $column_quantity; ?></td>
         <td class="right"><?php echo $column_price; ?></td>
         <td class="right"><?php echo $column_total; ?></td>
-        <?php if ($products) { ?>
-        <td style="width: 1px;"></td>
-        <?php } ?>
       </tr>
     </thead>
     <tbody>
@@ -74,7 +71,6 @@
         <td class="right"><?php echo $product['quantity']; ?></td>
         <td class="right"><?php echo $product['price']; ?></td>
         <td class="right"><?php echo $product['total']; ?></td>
-        <td class="right"><a href="<?php echo $product['return']; ?>"><img src="catalog/view/theme/lethe/image/return.png" alt="<?php echo $button_return; ?>" title="<?php echo $button_return; ?>" /></a></td>
       </tr>
       <?php } ?>
       <?php foreach ($vouchers as $voucher) { ?>
@@ -85,7 +81,6 @@
         <td class="right"><?php echo $voucher['amount']; ?></td>
         <td class="right"><?php echo $voucher['amount']; ?></td>
         <?php if ($products) { ?>
-        <td></td>
         <?php } ?>
       </tr>
       <?php } ?>
@@ -96,9 +91,6 @@
         <td colspan="3"></td>
         <td class="right"><b><?php echo $total['title']; ?>:</b></td>
         <td class="right"><?php echo $total['text']; ?></td>
-        <?php if ($products) { ?>
-        <td></td>
-        <?php } ?>
       </tr>
       <?php } ?>
     </tfoot>

@@ -18,7 +18,7 @@ $_['text_weight']       = 'Váha';
 $_['text_dimension']    = 'Rozměry (hloubka x šířka x výška)';
 $_['text_compare']      = 'Porovnanie tovaru (%s)';
 $_['text_success']      = 'Vykonané: Pridali ste <a href="%s">%s</a> k <a href="%s">porovnanie</a>!';
-$_['text_remov']       = 'Vykonané: Zmenili ste tovar k porovnaniu.!';
+$_['text_remove']       = 'Vykonané: Zmenili ste tovar k porovnaniu.!';
 $_['text_empty']        = 'Nevybrali ste žiadny tovar k porovnaniu.';
 
 ?>

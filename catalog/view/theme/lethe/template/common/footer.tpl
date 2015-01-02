@@ -48,7 +48,7 @@
     <h3>Kontakt</h3>
     <ul>
       <li>0904 857 224</li>
-      <li>info@dronshop.sk</li>
+      <li>info@multikoptery.sk</li>
 	  <li>
 		  <div id="social">
 			<a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
