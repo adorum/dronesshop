@@ -4,6 +4,12 @@
 	<version><![CDATA[1.0]]></version>
 	<vqmver><![CDATA[2.5.1]]></vqmver>
 	<author><![CDATA[Andrej Ruman]]></author>
+	<file name="system/startup.php">
+		<operation>
+			<search position="after"><![CDATA[// Common]]></search>
+			<add><![CDATA[require_once(DIR_SYSTEM . 'library/html2text.php');]]></add>
+		</operation>
+	</file>
 	<file name="admin/language/slovak/setting/setting.php">
 		<operation>
 			<search position="after"><![CDATA[$_['entry_alert_emails']]]></search>
@@ -58,13 +64,13 @@ CKEDITOR.replace('email_body_text', {
 				$dompdf->render();
 				$output = $dompdf->output();
 				file_put_contents($orderFileName, $output);
-				$mail_body = $this->config->get('config_email_body');]]></add>
+				$mail_body = html_entity_decode($this->config->get('config_email_body'), ENT_QUOTES, 'UTF-8');]]></add>
 		</operation>
 		<operation>
 			<search position="replace" offset="2"><![CDATA[$mail->setHtml($html);]]></search>
 			<add><![CDATA[$mail->addAttachment($orderFileName);
 				$mail->setHtml($mail_body);
-				$mail->setText(html_entity_decode(preg_replace('/(?:<|&lt;).*?(?:>|&gt;)/', '', $mail_body), ENT_QUOTES, 'UTF-8'));
+				$mail->setText(html2text($mail_body));
 				$mail->send();
 				if(file_exists ($orderFileName))
 				{
