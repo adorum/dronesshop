@@ -2,7 +2,7 @@
 // Text
 $_['text_new_subject']          = '%s - Objednávka %s';
 $_['text_new_greeting']         = 'Ďakujeme za zájem o tovaru z %s. Vaše objednávka byla přijata a bude zpracována po ověření Vaší platby.';
-$_['text_new_receivd']         = 'Obdrželi ste novou objednávku.';
+$_['text_new_received']         = 'Obdrželi ste novou objednávku.';
 $_['text_new_link']             = 'Pro zobrazení objednávky klikněte na následující odkaz:';
 $_['text_new_order_detail']     = 'Detaily objednávky';
 $_['text_new_instruction']      = 'Instrukce:';
