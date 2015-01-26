@@ -77,54 +77,69 @@ CKEDITOR.replace('email_body_text', {
 					unlink($orderFileName);
 				}]]></add>
 		</operation>
+		<operation>
+			<search position="after"><![CDATA[$template->data['text_powered']]]></search>
+			<add><![CDATA[$template->data['text_powered'] = $language->get('text_new_powered');
+			$template->data['text_contractor'] = $language->get('text_new_contractor');
+			$template->data['text_recipient'] = $language->get('text_new_recipient');
+			$template->data['text_order'] = $language->get('text_new_order');
+			$template->data['store_telephone'] = $this->config->get('config_telephone');
+			$template->data['store_email'] = $this->config->get('config_email');]]></add>
+		</operation>
 	</file>
 	<file name="catalog/view/theme/*/template/mail/order.tpl">
 		<operation>
 			<search position="replace" offset="60"><![CDATA[<body style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000;">]]></search>
 			<add><![CDATA[<body style="font-family: DejaVu Sans, sans-serif; font-size: 12px; color: #000000;">
+			<p style="font-size:14pt;font-weight:bold;width:100%;text-align:right">
+				<?php echo $text_order_id; ?>&nbsp;<?php echo $order_id; ?>
+			</p>
 <table style="width: 100%;margin-bottom: 20px;" border="1" cellspacing="0">
 	<tr style="border: 1px solid">
 		<td style="border: 1px solid; padding: 5px" valign="top">
-			<b>Dodávateľ</b>
-				<p style="font-size: 12px;  text-align: left; padding-left: 25px; ">
+			<b><?php echo $text_contractor; ?></b>
+				<p style="font-size: 12px;  text-align: left; padding: 20px; font-weight:bold; ">
 				<?php echo $store_name; ?> <br />
 				<?php echo $store_address; ?>
 				</p>
 				<p>
-					<b><?php echo $text_telephone; ?></b>0904 857 224<br />
-					<b><?php echo $text_email; ?></b>adorum@gmail.com<br />
+					<?php echo $text_telephone; ?>&nbsp;<b><?php echo $store_telephone; ?></b><br />
+					<?php echo $text_email; ?>&nbsp;<b><?php echo $store_email; ?></b><br />
 					<br />
-					<b>IČO: </b>11111111111<br />
-					<b>DIČ: </b>22222222222222222<br />
+					IČO:&nbsp;11111111111<br />
+					DIČ:&nbsp;22222222222<br />
 					<br />
-					<b>Číslo účtu: </b>1111111111111/0900
+					Číslo účtu:&nbsp;1111111111111/0900
 					<br /><br />
 					Nie som platca DPH.
 					<br /><br />
 					Vypis z ORSR!!!!!!!!!!!!
 				</p>
 				<hr />
-				<b>Príjemnca</b>
-				<p style="font-size: 12px;  text-align: left; padding-left: 25px; "><?php echo $payment_address; ?></p>
+				<b><?php echo $text_recipient; ?></b>
+				<p style="font-size: 12px;  text-align: left; padding: 20px; font-weight:bold; ">
+				<?php echo $payment_address; ?></p>
 				<p>
-					<b><?php echo $text_email; ?></b> <?php echo $email; ?><br />
-					<b><?php echo $text_telephone; ?></b> <?php echo $telephone; ?>
+					<?php echo $text_telephone; ?>&nbsp;<?php echo $telephone; ?>
+					<br />
+					<?php echo $text_email; ?>&nbsp;<?php echo $email; ?><br />		
 				</p>
 		</td>
 		<td style="border: 1px solid; padding: 5px" valign="top">
 			<b>IČO odberateľa:</b><br />
-				<b>DIČ odberateľa:</b>
+				<b>DIČ odberateľa:</b><br/>
 				<hr />
 				<b>Odberateľ:</b>
-				
+					<p style="font-size: 12px;  text-align: left; padding: 20px; font-weight:bold; ">
+					<?php echo $payment_address; ?></p>
 				<hr />
-				<b>Objednávka:</b>
-				<p>
+				<b>Objednávka:</b><br /><br />
+				<p style="font-size: 12px;  text-align: left; padding: 20px; font-weight:bold; ">
 					<ul>
-						<li><b><?php echo $text_date_added; ?></b> <?php echo $date_added; ?></li>
-						<li><b><?php echo $text_payment_method; ?></b> <?php echo $payment_method; ?></li>
+						<li><?php echo $text_date_added; ?>&nbsp;<b><?php echo $date_added; ?></b></li>
+						<li><?php echo $text_payment_method; ?>&nbsp;<b><?php echo $payment_method; ?></b></li>
 						<?php if ($shipping_method) { ?>
-						<li><b><?php echo $text_shipping_method; ?></b> <?php echo $shipping_method; ?></li>
+						<li><?php echo $text_shipping_method; ?>&nbsp;<b><?php echo $shipping_method; ?></b></li>
 						<?php } ?>    
 					</ul>
 				</p>
