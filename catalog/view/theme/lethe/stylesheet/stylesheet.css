@@ -835,7 +835,7 @@ a.button:hover, input.button:hover {
 }
 
 .box-product .name {
-	height: 30px;
+	height: 48px;
 }
 
 .box-product .name a {
@@ -1288,7 +1288,7 @@ a.button:hover, input.button:hover {
 
 .product-grid .name
 {
-	height:45px;
+	height:48px;
 }
 
 .product-grid .name a {
