@@ -1,0 +1,36 @@
+<modification>
+	<id>SEO URL Core</id>
+	<version>1.0.0</version>
+	<vqmver>2.4.0</vqmver>
+	<author>jimiscript</author>
+
+	<file name="catalog/controller/common/seo_url.php">
+		<operation error="skip">
+			<search position="after" offset="1">
+				<![CDATA[
+				$this->request->get['route'] = 'information/information';
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+				else {
+    			$this->request->get['route'] = $this->request->get['_route_'];
+				}
+				]]>
+			</add>
+		</operation>
+		<operation error="skip">
+			<search position="before" index="1,2">
+				<![CDATA[
+				return $link;
+				]]>
+			</search>
+			<add>
+				<![CDATA[
+				$link = str_replace('index.php?route=', '', $link);
+				]]>
+			</add>
+		</operation>
+	</file>
+
+</modification>

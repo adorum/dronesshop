@@ -138,6 +138,13 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-sm-10 center-sm">
+						<div class="login pull-left">
+                            <?php if (!$logged) { ?>
+                            <?php echo $text_welcome; ?>
+                            <?php } else { ?>
+                            <?php echo $text_logged; ?>
+                            <?php } ?>
+                        </div>
                         <ul class="links pull-left">
 
                             <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"><span class="icon-heart"></span><?php echo $text_wishlist; ?></a>
@@ -146,15 +153,6 @@ $('body').prepend('<iframe src="<?php echo $store; ?>" style="display: none;"></
                             <li><a href="<?php echo $shopping_cart; ?>"><span class="icon-shopping-cart"></span><?php echo $text_shopping_cart; ?></a></li>
                             <li><a class="last" href="<?php echo $checkout; ?>"><span class="icon-file"></span><?php echo $text_checkout; ?></a></li>
                         </ul>
-
-                        <div class="login pull-left">
-                            <?php if (!$logged) { ?>
-                            <?php echo $text_welcome; ?>
-                            <?php } else { ?>
-                            <?php echo $text_logged; ?>
-                            <?php } ?>
-                        </div>
-
 
                         <div class="currency pull-left hidden-xs">
                             <?php echo $currency; ?>
