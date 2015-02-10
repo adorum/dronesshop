@@ -8,19 +8,19 @@ class ControllerFeedGoogleSitemap extends Controller {
 
 			$products = $this->model_catalog_product->getProducts();
 
-			foreach ($products as $product) {
+			/*foreach ($products as $product) {
 				$output .= '<url>';
 				$output .= '<loc>' . $this->url->link('product/product', 'product_id=' . $product['product_id']) . '</loc>';
 				$output .= '<changefreq>weekly</changefreq>';
 				$output .= '<priority>1.0</priority>';
 				$output .= '</url>';
-			}
+			}*/
 
 			$this->load->model('catalog/category');
 
 			$output .= $this->getCategories(0);
 
-			$this->load->model('catalog/manufacturer');
+			/*$this->load->model('catalog/manufacturer');
 
 			$manufacturers = $this->model_catalog_manufacturer->getManufacturers();
 
@@ -40,7 +40,7 @@ class ControllerFeedGoogleSitemap extends Controller {
 					$output .= '<priority>1.0</priority>';
 					$output .= '</url>';
 				}
-			}
+			}*/
 
 			$this->load->model('catalog/information');
 
