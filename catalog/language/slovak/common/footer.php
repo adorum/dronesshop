@@ -15,5 +15,6 @@ $_['text_account']      = 'Môj účet';
 $_['text_order']        = 'História objednávok';
 $_['text_wishlist']     = 'Zoznam prianí';
 $_['text_newsletter']   = 'Novinky';
+$_['text_subscribe_us']	= 'Odoberanie noviniek';
 $_['text_powered']      = 'Používá sa opensource systém <a href="http://www.opencart.com">OpenCart</a><br /> %s, &copy; %s';
 ?>

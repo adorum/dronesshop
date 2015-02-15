@@ -84,15 +84,17 @@ if( count($modules) ) {
         <div class="container">
             <div class="footer-center-wrap">
                 <div class="row">
-                    <?php if( isset($themeConfig['widget_contactus_data'][$LANGUAGE_ID]) ) { ?>
-                    <div class="column col-xs-12 col-sm-6 col-lg-3">
-                        <div class="box contact-us">
-                            <div class="box-heading"><span><?php echo $this->language->get('text_contact_us'); ?></span></div>
-                            <?php echo html_entity_decode( $themeConfig['widget_contactus_data'][$LANGUAGE_ID], ENT_QUOTES, 'UTF-8' ); ?>
+					<div class="column col-xs-12 col-sm-6 col-lg-2">
+                        <div class="box">
+                            <div class="box-heading"><span><?php echo $text_information; ?></span></div>
+                            <ul class="list">
+								<?php foreach ($informations as $information) { ?>
+									<li><a href="<?php echo $information['href']; ?>"><?php echo 				$information['title']; ?></a></li>
+								<?php } ?>
+                            </ul>
                         </div>
                     </div>
-                    <?php } ?>
-
+					
                     <div class="column col-xs-12 col-sm-6 col-lg-2">
                         <div class="box">
                             <div class="box-heading"><span><?php echo $text_service; ?></span></div>
@@ -100,7 +102,6 @@ if( count($modules) ) {
                                 <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
                                 <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
                                 <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-                                <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
                                 <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
                             </ul>
                         </div>
@@ -126,7 +127,6 @@ if( count($modules) ) {
                                 <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
                                 <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
                                 <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
-                                <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -136,7 +136,7 @@ if( count($modules) ) {
                      ?>
                     <div class="column col-xs-12 col-sm-6 col-lg-3">
                         <div class="box newsletter">
-                            <div class="box-heading"><span><?php echo $this->language->get('Subscribe Us'); ?></span></div>
+                            <div class="box-heading"><span><?php echo $this->language->get('text_subscribe_us'); ?></span></div>
                             <?php echo html_entity_decode( $themeConfig['widget_newsletter_data'][$LANGUAGE_ID], ENT_QUOTES, 'UTF-8' ); ?>
                         </div>
                     </div>
@@ -182,7 +182,6 @@ if( count($modules) ) {
                     <?php } else { ?>
                     <?php echo $powered; ?>.
                     <?php } ?>
-                    Design By <a href="http://www.pavothemes.com" title="pavothemes - opencart themes clubs">PavoThemes</a>
                 </div>
                 <?php if( isset($themeConfig['widget_paypal_data'][$LANGUAGE_ID]) ) {?>
                     <div class="paypal pull-right">

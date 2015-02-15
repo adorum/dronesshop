@@ -16,4 +16,5 @@ $_['text_order']        = 'Historie objednávek';
 $_['text_wishlist']     = 'Seznam přání';
 $_['text_newsletter']   = 'Newsletter';
 $_['text_powered']      = 'Používá se opensource systém <a href="http://www.opencart.com">OpenCart</a><br /> %s &copy; %s';
+$_['text_subscribe_us']	= 'Odoberaní novinek';
 ?>
