@@ -1333,7 +1333,6 @@ body.layout-boxed-lg #page {
   text-decoration: line-through;
 }
 .price {
-  display: block;
   font-weight: normal;
   color: #F2797F;
   margin: 6px 0px 8px;
