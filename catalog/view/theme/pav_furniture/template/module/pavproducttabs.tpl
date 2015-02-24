@@ -76,7 +76,7 @@ $id = rand(1,9)+rand();
                                     </div>
                                 <?php } ?>
                                 <div class="name"><a
-                                            href="<?php echo $product['href']; ?>"><?php echo utf8_substr( strip_tags($product['name']),0,17);?>...</a>
+                                            href="<?php echo $product['href']; ?>"><?php echo $product['name'];?></a>
                                 </div>
 
                                 <?php if ($product['price']) { ?>

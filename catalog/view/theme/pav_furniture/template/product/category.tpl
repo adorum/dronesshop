@@ -135,7 +135,7 @@ $categoryPzoom        = $categoryConfig['category_pzoom'];
                         <?php } ?>
                         <div class="product-meta">
                             <h3 class="name"><a
-                                        href="<?php echo $product['href']; ?>"><?php echo utf8_substr( strip_tags($product['name']),0,17);?>...</a></h3>
+                                        href="<?php echo $product['href']; ?>"><?php echo $product['name'];?></a></h3>
 
                             <div class="description"><?php echo utf8_substr( strip_tags($product['description']),0,160);?>
                                 ...
