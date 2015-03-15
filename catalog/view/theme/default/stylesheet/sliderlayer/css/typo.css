@@ -96,20 +96,20 @@ website:   	http://www.themepunch.com
 		}
 
 .tp-caption.big_black{
-			position: absolute;
-			color: #000;
-			text-shadow: none;
-			font-weight: 800;
-			font-size: 36px;
-			line-height: 36px;
-			font-family: 'Open Sans', sans;
-			padding: 0px 4px;
-			margin: 0px;
-			border-width: 0px;
-			border-style: none;
-			background-color:#fff;
-			letter-spacing: -1.5px;
-		}
+    position: absolute;
+    color: #000;
+    text-shadow: none;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 36px;
+    font-family: 'Open Sans', sans;
+    padding: 0px 4px;
+    margin: 0px;
+    border-width: 0px;
+    border-style: none;
+    background-color:#fff;
+    letter-spacing: 0.5px;
+}
 
 .tp-caption.medium_grey{
 			position: absolute;
@@ -320,6 +320,26 @@ website:   	http://www.themepunch.com
 		font-size: 19px;
 		line-height: 19px;
 		font-family: 'Open Sans', sans;
+	}
+
+.tp-caption.main_heading {
+		color: #fff;
+		font-size: 30px;
+		background-color: #f14042;
+		padding: 2px !important;
+	}
+
+.tp-caption.sub_heading {
+		color: #fff;
+		font-size: 12px;
+		background-color: #4E4C4E;
+		padding: 2px !important;
+	}
+
+.tp-caption.red_price {
+		color: #f14042;
+		font-weight: bold;
+		font-size: 24px;
 	}
 
 .tp-caption.noshadow {
