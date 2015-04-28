@@ -67,6 +67,7 @@ img {
   height: auto;
   max-width: 100%;
   vertical-align: middle;
+  image-rendering: optimizequality;
 }
 table.list {
   border-collapse: collapse;
@@ -1623,7 +1624,6 @@ body.layout-boxed-lg #page {
   margin-bottom: 20px;
   background-color: #FFFFFF;
   color: #000000;
-  padding: 10px;
 }
 .category-list h4 {
   text-transform: uppercase;
@@ -1871,7 +1871,6 @@ body.layout-boxed-lg #page {
 .product-info {
   background: #FFFFFF;
   margin-bottom: 20px;
-  padding: 20px;
 }
 .product-info h1 {
   padding: 0px;

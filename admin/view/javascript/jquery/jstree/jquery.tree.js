@@ -12,7 +12,7 @@
  *
  */
 
-(function($) {
+(function($){ 
 	// jQuery plugin
 	$.tree = {
 		datastores	: { },
@@ -24,7 +24,7 @@
 				opts	: { method: "GET", url: false } // Options passed to datastore
 			},
 			selected	: false,		// FALSE or STRING or ARRAY
-			opened		: [],			// ARRAY OF INITIALLY OPENED NODES
+			opened	: [],			// ARRAY OF INITIALLY OPENED NODES
 			languages	: [],			// ARRAY of string values (which will be used as CSS classes - so they must be valid)
 			ui		: {
 				dots		: true,		// BOOL - dots or no dots
@@ -37,99 +37,99 @@
 			},
 			types	: {
 				"default" : {
-					clickable	: true, // can be function
-					renameable	: true, // can be function
-					deletable	: true, // can be function
-					creatable	: true, // can be function
-					draggable	: true, // can be function
-					max_children	: -1, // -1 - not set, 0 - no children, 1 - one child, etc // can be function
-					max_depth		: -1, // -1 - not set, 0 - no children, 1 - one level of children, etc // can be function
-					valid_children	: "all", // all, none, array of values // can be function
+					clickable		: true, 	// can be function
+					renameable	: true, 	// can be function
+					deletable		: true, 	// can be function
+					creatable		: true,		// can be function
+					draggable		: true, 	// can be function
+					max_children	: -1, 		// -1 - not set, 0 - no children, 1 - one child, etc // can be function
+					max_depth		: -1, 		// -1 - not set, 0 - no children, 1 - one level of children, etc // can be function
+					valid_children	: "all", 		// all, none, array of values // can be function
 					icon : {
-						image : false,
-						position : false
+						image 		: false,
+						position 	: false
 					}
 				}
 			},
 			rules	: {
 				multiple	: false,	// FALSE | CTRL | ON - multiple selection off/ with or without holding Ctrl
 				multitree	: "none",	// all, none, array of tree IDs to accept from
-				type_attr	: "rel",	// STRING attribute name (where is the type stored as string)
+				type_attr	: "rel",		// STRING attribute name (where is the type stored as string)
 				createat	: "bottom",	// STRING (top or bottom) new nodes get inserted at top or bottom
-				drag_copy	: "ctrl",	// FALSE | CTRL | ON - drag to copy off/ with or without holding Ctrl
+				drag_copy	: "ctrl",		// FALSE | CTRL | ON - drag to copy off/ with or without holding Ctrl
 				drag_button	: "left",	// left, right or both
 				use_max_children	: true,
-				use_max_depth		: true,
+				use_max_depth	: true,
 
-				max_children: -1,
-				max_depth	: -1,
-				valid_children : "all"
+				max_children	: -1,
+				max_depth		: -1,
+				valid_children 	: "all"
 			},
 			lang : {
 				new_node	: "New folder",
 				loading		: "Loading ..."
 			},
 			callback	: {
-				beforechange: function(NODE,TREE_OBJ) { return true },
+				beforechange	: function(NODE,TREE_OBJ) { return true },
 				beforeopen	: function(NODE,TREE_OBJ) { return true },
 				beforeclose	: function(NODE,TREE_OBJ) { return true },
 				beforemove	: function(NODE,REF_NODE,TYPE,TREE_OBJ) { return true }, 
-				beforecreate: function(NODE,REF_NODE,TYPE,TREE_OBJ) { return true }, 
-				beforerename: function(NODE,LANG,TREE_OBJ) { return true }, 
-				beforedelete: function(NODE,TREE_OBJ) { return true }, 
-				beforedata	: function(NODE,TREE_OBJ) { return { id : $(NODE).attr("id") || 0 } }, // PARAMETERS PASSED TO SERVER
-				ondata		: function(DATA,TREE_OBJ) { return DATA; },		// modify data before parsing it
+				beforecreate	: function(NODE,REF_NODE,TYPE,TREE_OBJ) { return true }, 
+				beforerename	: function(NODE,LANG,TREE_OBJ) { return true }, 
+				beforedelete	: function(NODE,TREE_OBJ) { return true }, 
+				beforedata		: function(NODE,TREE_OBJ) { return { id : $(NODE).attr("id") || 0 } }, // PARAMETERS PASSED TO SERVER
+				ondata			: function(DATA,TREE_OBJ) { return DATA; },		// modify data before parsing it
 				onparse		: function(STR,TREE_OBJ) { return STR; },		// modify string before visualizing it
 				onhover		: function(NODE,TREE_OBJ) { },					// node hovered
-				onselect	: function(NODE,TREE_OBJ) { },					// node selected
-				ondeselect	: function(NODE,TREE_OBJ) { },					// node deselected
-				onchange	: function(NODE,TREE_OBJ) { },					// focus changed
-				onrename	: function(NODE,TREE_OBJ,RB) { },				// node renamed
+				onselect		: function(NODE,TREE_OBJ) { },					// node selected
+				ondeselect		: function(NODE,TREE_OBJ) { },					// node deselected
+				onchange		: function(NODE,TREE_OBJ) { },					// focus changed
+				onrename		: function(NODE,TREE_OBJ,RB) { },				// node renamed
 				onmove		: function(NODE,REF_NODE,TYPE,TREE_OBJ,RB) { },	// move completed
 				oncopy		: function(NODE,REF_NODE,TYPE,TREE_OBJ,RB) { },	// copy completed
-				oncreate	: function(NODE,REF_NODE,TYPE,TREE_OBJ,RB) { },	// node created
-				ondelete	: function(NODE,TREE_OBJ,RB) { },				// node deleted
+				oncreate		: function(NODE,REF_NODE,TYPE,TREE_OBJ,RB) { },	// node created
+				ondelete		: function(NODE,TREE_OBJ,RB) { },				// node deleted
 				onopen		: function(NODE,TREE_OBJ) { },					// node opened
-				onopen_all	: function(TREE_OBJ) { },						// all nodes opened
-				onclose_all	: function(TREE_OBJ) { },						// all nodes closed
+				onopen_all		: function(TREE_OBJ) { },						// all nodes opened
+				onclose_all		: function(TREE_OBJ) { },						// all nodes closed
 				onclose		: function(NODE,TREE_OBJ) { },					// node closed
-				error		: function(TEXT,TREE_OBJ) { },					// error occured
-				ondblclk	: function(NODE,TREE_OBJ) { TREE_OBJ.toggle_branch.call(TREE_OBJ, NODE); TREE_OBJ.select_branch.call(TREE_OBJ, NODE); },
-				onrgtclk	: function(NODE,TREE_OBJ,EV) { },				// right click - to prevent use: EV.preventDefault(); EV.stopPropagation(); return false
-				onload		: function(TREE_OBJ) { },
-				oninit		: function(TREE_OBJ) { },
+				error			: function(TEXT,TREE_OBJ) { },					// error occured
+				ondblclk		: function(NODE,TREE_OBJ) { TREE_OBJ.toggle_branch.call(TREE_OBJ, NODE); TREE_OBJ.select_branch.call(TREE_OBJ, NODE); },
+				onrgtclk		: function(NODE,TREE_OBJ,EV) { },				// right click - to prevent use: EV.preventDefault(); EV.stopPropagation(); return false
+				onload			: function(TREE_OBJ) { },
+				oninit			: function(TREE_OBJ) { },
 				onfocus		: function(TREE_OBJ) { },
-				ondestroy	: function(TREE_OBJ) { },
-				onsearch	: function(NODES, TREE_OBJ) { NODES.addClass("search"); },
-				ondrop		: function(NODE,REF_NODE,TYPE,TREE_OBJ) { },
-				check		: function(RULE,NODE,VALUE,TREE_OBJ) { return VALUE; },
+				ondestroy		: function(TREE_OBJ) { },
+				onsearch		: function(NODES, TREE_OBJ) { NODES.addClass("search"); },
+				ondrop			: function(NODE,REF_NODE,TYPE,TREE_OBJ) { },
+				check			: function(RULE,NODE,VALUE,TREE_OBJ) { return VALUE; },
 				check_move	: function(NODE,REF_NODE,TYPE,TREE_OBJ) { return true; }
 			},
 			plugins : { }
 		},
 
 		create		: function () { return new tree_component(); },
-		focused		: function () { return tree_component.inst[tree_component.focused]; },
+		focused	: function () { return tree_component.inst[tree_component.focused]; },
 		reference	: function (obj) { 
 			var o = $(obj); 
-			if(!o.size()) o = $("#" + obj);
-			if(!o.size()) return null; 
+			if (!o.size()) o = $("#" + obj);
+			if (!o.size()) return null; 
 			o = (o.is(".tree")) ? o.attr("id") : o.parents(".tree:eq(0)").attr("id"); 
 			return tree_component.inst[o] || null; 
 		},
 		rollback	: function (data) {
-			for(var i in data) {
-				if(!data.hasOwnProperty(i)) continue;
+			for (var i in data) {
+				if (!data.hasOwnProperty(i)) continue;
 				var tmp = tree_component.inst[i];
 				var lock = !tmp.locked;
 
 				// if not locked - lock the tree
-				if(lock) tmp.lock(true);
+				if (lock) tmp.lock(true);
 				// Cancel ongoing rename
 				tmp.inp = false;
 				tmp.container.html(data[i].html).find(".dragged").removeClass("dragged").end().find(".hover").removeClass("hover");
 
-				if(data[i].selected) {
+				if (data[i].selected) {
 					tmp.selected = $("#" + data[i].selected);
 					tmp.selected_arr = [];
 					tmp.container
@@ -138,7 +138,7 @@
 						});
 				}
 				// if this function set the lock - unlock
-				if(lock) tmp.lock(false);
+				if (lock) tmp.lock(false);
 
 				delete lock;
 				delete tmp;
@@ -146,23 +146,23 @@
 		},
 		drop_mode	: function (opts) {
 			opts = $.extend(opts, { show : false, type : "default", str : "Foreign node" });
-			tree_component.drag_drop.foreign	= true;
-			tree_component.drag_drop.isdown		= true;
-			tree_component.drag_drop.moving		= true;
-			tree_component.drag_drop.appended	= false;
-			tree_component.drag_drop.f_type		= opts.type;
-			tree_component.drag_drop.f_data		= opts;
+			tree_component.drag_drop.foreign = true;
+			tree_component.drag_drop.isdown = true;
+			tree_component.drag_drop.moving = true;
+			tree_component.drag_drop.appended = false;
+			tree_component.drag_drop.f_type = opts.type;
+			tree_component.drag_drop.f_data = opts;
 
 
 			if(!opts.show) {
-				tree_component.drag_drop.drag_help	= false;
-				tree_component.drag_drop.drag_node	= false;
+				tree_component.drag_drop.drag_help = false;
+				tree_component.drag_drop.drag_node = false;
 			}
 			else {
-				tree_component.drag_drop.drag_help	= $("<div id='jstree-dragged' class='tree tree-default'><ul><li class='last dragged foreign'><a href='#'><ins>&nbsp;</ins>" + opts.str + "</a></li></ul></div>");
-				tree_component.drag_drop.drag_node	= tree_component.drag_drop.drag_help.find("li:eq(0)");
+				tree_component.drag_drop.drag_help = $("<div id='jstree-dragged' class='tree tree-default'><ul><li class='last dragged foreign'><a href='#'><ins>&nbsp;</ins>" + opts.str + "</a></li></ul></div>");
+				tree_component.drag_drop.drag_node = tree_component.drag_drop.drag_help.find("li:eq(0)");
 			}
-			if($.tree.drag_start !== false) $.tree.drag_start.call(null, false);
+			if ($.tree.drag_start !== false) $.tree.drag_start.call(null, false);
 		},
 		drag_start	: false,
 		drag		: false,
@@ -171,8 +171,8 @@
 	$.fn.tree = function (opts) {
 		return this.each(function() {
 			var conf = $.extend({},opts);
-			if(tree_component.inst && tree_component.inst[$(this).attr('id')]) tree_component.inst[$(this).attr('id')].destroy();
-			if(conf !== false) new tree_component().init(this, conf);
+			if (tree_component.inst && tree_component.inst[$(this).attr('id')]) tree_component.inst[$(this).attr('id')].destroy();
+			if (conf !== false) new tree_component().init(this, conf);
 		});
 	};
 
@@ -185,19 +185,19 @@
 			init : function(elem, conf) {
 				var _this = this;
 				this.container = $(elem);
-				if(this.container.size == 0) return false;
+				if (this.container.size == 0) return false;
 				tree_component.inst[this.cntr] = this;
-				if(!this.container.attr("id")) this.container.attr("id","jstree_" + this.cntr); 
+				if (!this.container.attr("id")) this.container.attr("id","jstree_" + this.cntr); 
 				tree_component.inst[this.container.attr("id")] = tree_component.inst[this.cntr];
 				tree_component.focused = this.cntr;
 				this.settings = $.extend(true, {}, this.settings, conf);
 
 				// DEAL WITH LANGUAGE VERSIONS
-				if(this.settings.languages && this.settings.languages.length) {
+				if (this.settings.languages && this.settings.languages.length) {
 					this.current_lang = this.settings.languages[0];
 					var st = false;
 					var id = "#" + this.container.attr("id");
-					for(var ln = 0; ln < this.settings.languages.length; ln++) {
+					for (var ln = 0; ln < this.settings.languages.length; ln++) {
 						st = tree_component.add_css(id + " ." + this.settings.languages[ln]);
 						if(st !== false) st.style.display = (this.settings.languages[ln] == this.current_lang) ? "" : "none";
 					}
@@ -205,13 +205,13 @@
 				else this.current_lang = false;
 				// THEMES
 				this.container.addClass("tree");
-				if(this.settings.ui.theme_name !== false) {
-					if(this.settings.ui.theme_path === false) {
+				if (this.settings.ui.theme_name !== false) {
+					if (this.settings.ui.theme_path === false) {
 						$("script").each(function () { 
 							if(this.src.toString().match(/jquery\.tree.*?js$/)) { _this.settings.ui.theme_path = this.src.toString().replace(/jquery\.tree.*?js$/, "") + "themes/" + _this.settings.ui.theme_name + "/style.css"; return false; }
 						});
 					}
-					if(this.settings.ui.theme_path != "" && $.inArray(this.settings.ui.theme_path, tree_component.themes) == -1) {
+					if (this.settings.ui.theme_path != "" && $.inArray(this.settings.ui.theme_path, tree_component.themes) == -1) {
 						tree_component.add_sheet({ url : this.settings.ui.theme_path });
 						tree_component.themes.push(this.settings.ui.theme_path);
 					}
@@ -219,59 +219,59 @@
 				}
 				// TYPE ICONS
 				var type_icons = "";
-				for(var t in this.settings.types) {
-					if(!this.settings.types.hasOwnProperty(t)) continue;
-					if(!this.settings.types[t].icon) continue;
-					if( this.settings.types[t].icon.image || this.settings.types[t].icon.position) {
-						if(t == "default")  type_icons += "#" + this.container.attr("id") + " li > a ins { ";
+				for (var t in this.settings.types) {
+					if (!this.settings.types.hasOwnProperty(t)) continue;
+					if (!this.settings.types[t].icon) continue;
+					if ( this.settings.types[t].icon.image || this.settings.types[t].icon.position) {
+						if (t == "default")  type_icons += "#" + this.container.attr("id") + " li > a ins { ";
 						else type_icons += "#" + this.container.attr("id") + " li[rel=" + t + "] > a ins { ";
-						if(this.settings.types[t].icon.image) type_icons += " background-image:url(" + this.settings.types[t].icon.image + "); ";
-						if(this.settings.types[t].icon.position) type_icons += " background-position:" + this.settings.types[t].icon.position + "; ";
+						if (this.settings.types[t].icon.image) type_icons += " background-image:url(" + this.settings.types[t].icon.image + "); ";
+						if (this.settings.types[t].icon.position) type_icons += " background-position:" + this.settings.types[t].icon.position + "; ";
 						type_icons += "} ";
 					}
 				}
-				if(type_icons != "") tree_component.add_sheet({ str : type_icons });
+				if (type_icons != "") tree_component.add_sheet({ str : type_icons });
 
-				if(this.settings.rules.multiple) this.selected_arr = [];
+				if (this.settings.rules.multiple) this.selected_arr = [];
 				this.offset = false;
 				this.hovered = false;
 				this.locked = false;
 
-				if(tree_component.drag_drop.marker === false) tree_component.drag_drop.marker = $("<div>").attr({ id : "jstree-marker" }).hide().appendTo("body");
+				if (tree_component.drag_drop.marker === false) tree_component.drag_drop.marker = $("<div>").attr({ id : "jstree-marker" }).hide().appendTo("body");
 				this.callback("oninit", [this]);
 				this.refresh();
 				this.attach_events();
 				this.focus();
 			},
-			refresh : function (obj) {
-				if(this.locked) return this.error("LOCKED");
+			refresh : function (obj){ 
+				if (this.locked) return this.error("LOCKED");
 				var _this = this;
-				if(obj && !this.settings.data.async) obj = false;
+				if (obj && !this.settings.data.async) obj = false;
 				this.is_partial_refresh = obj ? true : false;
 
 				// SAVE OPENED
 				this.opened = Array();
-				if(this.settings.opened != false) {
-					$.each(this.settings.opened, function (i, item) {
-						if(this.replace(/^#/,"").length > 0) { _this.opened.push("#" + this.replace(/^#/,"")); }
+				if (this.settings.opened != false) {
+					$.each(this.settings.opened, function (i, item){ 
+						if (this.replace(/^#/,"").length > 0) { _this.opened.push("#" + this.replace(/^#/,"")); }
 					});
 					this.settings.opened = false;
 				}
 				else {
-					this.container.find("li.open").each(function (i) { if(this.id) { _this.opened.push("#" + this.id); } });
+					this.container.find("li.open").each(function (i){ if(this.id) { _this.opened.push("#" + this.id); } });
 				}
 
 				// SAVE SELECTED
-				if(this.selected) {
+				if (this.selected) {
 					this.settings.selected = Array();
-					if(obj) {
-						$(obj).find("li:has(a.clicked)").each(function () {
-							if(this.id) _this.settings.selected.push("#" + this.id);
+					if (obj) {
+						$(obj).find("li:has(a.clicked)").each(function (){ 
+							if (this.id) _this.settings.selected.push("#" + this.id);
 						});
 					}
 					else {
-						if(this.selected_arr) {
-							$.each(this.selected_arr, function () {
+						if (this.selected_arr) {
+							$.each(this.selected_arr, function (){ 
 								if(this.attr("id")) _this.settings.selected.push("#" + this.attr("id"));
 							});
 						}
@@ -282,33 +282,33 @@
 				}
 				else if(this.settings.selected !== false) {
 					var tmp = Array();
-					if((typeof this.settings.selected).toLowerCase() == "object") {
-						$.each(this.settings.selected, function () {
-							if(this.replace(/^#/,"").length > 0) tmp.push("#" + this.replace(/^#/,""));
+					if ((typeof this.settings.selected).toLowerCase() == "object") {
+						$.each(this.settings.selected, function (){ 
+							if (this.replace(/^#/,"").length > 0) tmp.push("#" + this.replace(/^#/,""));
 						});
 					}
 					else {
-						if(this.settings.selected.replace(/^#/,"").length > 0) tmp.push("#" + this.settings.selected.replace(/^#/,""));
+						if (this.settings.selected.replace(/^#/,"").length > 0) tmp.push("#" + this.settings.selected.replace(/^#/,""));
 					}
 					this.settings.selected = tmp;
 				}
 
-				if(obj && this.settings.data.async) {
+				if (obj && this.settings.data.async) {
 					this.opened = Array();
 					obj = this.get_node(obj);
-					obj.find("li.open").each(function (i) { _this.opened.push("#" + this.id); });
-					if(obj.hasClass("open")) obj.removeClass("open").addClass("closed");
-					if(obj.hasClass("leaf")) obj.removeClass("leaf");
+					obj.find("li.open").each(function (i){ _this.opened.push("#" + this.id); });
+					if (obj.hasClass("open")) obj.removeClass("open").addClass("closed");
+					if (obj.hasClass("leaf")) obj.removeClass("leaf");
 					obj.children("ul:eq(0)").html("");
-					return this.open_branch(obj, true, function () { _this.reselect.apply(_this); });
+					return this.open_branch(obj, true, function (){ _this.reselect.apply(_this); });
 				}
 
 				var _this = this;
 				var _datastore = new $.tree.datastores[this.settings.data.type]();
-				if(this.container.children("ul").size() == 0) {
+				if (this.container.children("ul").size() == 0) {
 					this.container.html("<ul class='ltr' style='direction:ltr;'><li class='last'><a class='loading' href='#'><ins>&nbsp;</ins>" + (this.settings.lang.loading || "Loading ...") + "</a></li></ul>");
 				}
-				_datastore.load(this.callback("beforedata",[false,this]),this,this.settings.data.opts,function(data) {
+				_datastore.load(this.callback("beforedata",[false,this]),this,this.settings.data.opts,function(data){ 
 					data = _this.callback("ondata",[data, _this]);
 					_datastore.parse(data,_this,_this.settings.data.opts,function(str) {
 						str = _this.callback("onparse", [str, _this]);
@@ -319,47 +319,47 @@
 					});
 				});
 			},
-			reselect : function (is_callback) {
+			reselect : function (is_callback){ 
 				var _this = this;
 
-				if(!is_callback)	this.cl_count = 0;
+				if (!is_callback)	this.cl_count = 0;
 				else				this.cl_count --;
 				// REOPEN BRANCHES
-				if(this.opened && this.opened.length) {
+				if (this.opened && this.opened.length) {
 					var opn = false;
-					for(var j = 0; this.opened && j < this.opened.length; j++) {
-						if(this.settings.data.async) {
+					for (var j = 0; this.opened && j < this.opened.length; j++) {
+						if (this.settings.data.async) {
 							var tmp = this.get_node(this.opened[j]);
-							if(tmp.size() && tmp.hasClass("closed") > 0) {
+							if (tmp.size() && tmp.hasClass("closed") > 0) {
 								opn = true;
 								var tmp = this.opened[j].toString().replace('/','\\/');
 								delete this.opened[j];
-								this.open_branch(tmp, true, function () { _this.reselect.apply(_this, [true]); } );
+								this.open_branch(tmp, true, function (){ _this.reselect.apply(_this, [true]); } );
 								this.cl_count ++;
 							}
 						}
 						else this.open_branch(this.opened[j], true);
 					}
-					if(this.settings.data.async && opn) return;
-					if(this.cl_count > 0) return;
+					if (this.settings.data.async && opn) return;
+					if (this.cl_count > 0) return;
 					delete this.opened;
 				} 
-				if(this.cl_count > 0) return;
+				if (this.cl_count > 0) return;
 
 				// DOTS and RIGHT TO LEFT
 				this.container.css("direction","ltr").children("ul:eq(0)").addClass("ltr");
-				if(this.settings.ui.dots == false)	this.container.children("ul:eq(0)").addClass("no_dots");
+				if (this.settings.ui.dots == false)	this.container.children("ul:eq(0)").addClass("no_dots");
 
 				// REPOSITION SCROLL
-				if(this.scrtop) {
+				if (this.scrtop) {
 					this.container.scrollTop(_this.scrtop);
 					delete this.scrtop;
 				}
 				// RESELECT PREVIOUSLY SELECTED
-				if(this.settings.selected !== false) {
+				if (this.settings.selected !== false) {
 					$.each(this.settings.selected, function (i) {
 						if(_this.is_partial_refresh)	_this.select_branch($(_this.settings.selected[i].toString().replace('/','\\/'), _this.container), (_this.settings.rules.multiple !== false) );
-						else							_this.select_branch($(_this.settings.selected[i].toString().replace('/','\\/'), _this.container), (_this.settings.rules.multiple !== false && i > 0) );
+						else						_this.select_branch($(_this.settings.selected[i].toString().replace('/','\\/'), _this.container), (_this.settings.rules.multiple !== false && i > 0) );
 					});
 					this.settings.selected = false;
 				}

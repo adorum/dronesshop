@@ -5,7 +5,7 @@ define('HTTP_SERVER', 'http://localhost/opencart/');
 // HTTPS
 define('HTTPS_SERVER', 'http://localhost/opencart/');
 
-// DIR
+// DIR*
 define('DIR_APPLICATION', 'C:\wamp\www\opencart/catalog/');
 define('DIR_SYSTEM', 'C:\wamp\www\opencart/system/');
 define('DIR_DATABASE', 'C:\wamp\www\opencart/system/database/');
