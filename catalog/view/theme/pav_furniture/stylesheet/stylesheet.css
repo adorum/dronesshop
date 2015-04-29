@@ -1,5 +1,4 @@
 html {
-  overflow-y: scroll;
   margin: 0;
   padding: 0;
 }
@@ -510,7 +509,7 @@ body.layout-boxed-lg #page {
   position: relative;
 }
 #logo {
-  padding: 16px 30px;
+  padding: 16px 0px;
   text-align: center;
 }
 .navbar-header {
